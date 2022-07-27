@@ -14,6 +14,7 @@ export default function Preload() {
                 <EmailSvg width='25' height='25' />
 
                 <TextInput 
+                placeholder="Difite seu e-mail"
                 
                 />
                 
@@ -34,8 +35,11 @@ const styles = StyleSheet.create ({
 
     Viewinput:{
         backgroundColor:'#83D6E5',
-        flexdirection:'row',
-        
+        flexDirection:'row',
+        borderRadius: 30,
+        justifyContent:'center',
+        alignItems:'center',
+                
     },
 
 })
