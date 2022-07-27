@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity  } from "react-native";
 
 
@@ -7,23 +7,33 @@ import EmailSvg from '../assets/email.svg'
 import LockSvg from '../assets/lock.svg'
 
 export default function Preload() {
+
+    const [ emailField, setEmailField ] = useState('')
+    const [ passwordField, setPasswordField ] = useState('')
+
+
     return(
         <View style={styles.Container} >
             <Logo style={{marginBottom: 20}} width='100%' height='160' />
 
             <View style={styles.Viewinput}>
-                <EmailSvg  width='25' height='25' />
+                <EmailSvg  width='25' height='25'  fill='#268597'/>
                 <TextInput  style={styles.txtimput} 
                 placeholderTextColor= '#268597'               
-                placeholder="Difite seu e-mail"                               
+                placeholder="Difite seu e-mail"   
+                value={emailField}     
+                onChangeText={t=>setEmailField(t)}                       
                 />            
             </View>
 
             <View style={styles.Viewinput}>
-                <LockSvg width='25' height='25' />
+                <LockSvg width='25' height='25' fill='#268597' />
                 <TextInput  style={styles.txtimput} 
                 placeholderTextColor= '#268597'                  
-                placeholder="Difite sua senha"                               
+                placeholder="Difite sua senha"  
+                value={passwordField} 
+                onChangeText={t=>setPasswordField(t)}
+                secureTextEntry={true}                        
                 />            
             </View>
 
@@ -31,7 +41,9 @@ export default function Preload() {
                 <Text style={styles.txtbutton} > LOGIN </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttoncadastro}>
+            <TouchableOpacity
+           
+             style={styles.buttoncadastro}>
                 <Text style={{fontSize: 18, color: '#268597' }} > Ainda não possui uma conta?</Text>
                 <Text style={{fontSize: 18, fontWeight:'bold', color: '#268597'}} > Cadastre-se</Text>
             </TouchableOpacity>            
