@@ -9,7 +9,5 @@ npm install --save react-native-gesture-handler
 npm install --save react-native-permissions  // tem que add permission
 npm install react-native-svg
 npm install react-native-svg-transformer
-yarn add styled-components
-
-
+yarn add styled-components  
 */
