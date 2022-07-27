@@ -12,13 +12,16 @@ export default function Preload() {
 
             <View style={styles.Viewinput}>
                 <EmailSvg width='25' height='25' />
+                <TextInput  style={styles.txtimput}                
+                placeholder="Difite seu e-mail"                               
+                />            
+            </View>
 
-                <TextInput 
-                placeholder="Difite seu e-mail"
-                
-                />
-                
-
+            <View style={styles.Viewinput}>
+                <EmailSvg width='25' height='25' />
+                <TextInput  style={styles.txtimput}                
+                placeholder="Difite seu e-mail"                               
+                />            
             </View>
             
         </View>
@@ -31,6 +34,7 @@ const styles = StyleSheet.create ({
         flex:1,
         backgroundColor:'#62C2D1',
         justifyContent:'center',
+        alignItems:'center'
     },
 
     Viewinput:{
@@ -39,7 +43,15 @@ const styles = StyleSheet.create ({
         borderRadius: 30,
         paddingLeft: 20,
         alignItems:'center',
-                        
+        marginTop:40,
+        width:'85%',
+        height:60        
     },
+
+    txtimput:{
+        marginLeft:5,
+        fontSize:17,
+        
+    }
 
 })
