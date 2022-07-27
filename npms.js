@@ -11,4 +11,5 @@ npm install react-native-svg
 npm install react-native-svg-transformer
 yarn add styled-components
 
+
 */

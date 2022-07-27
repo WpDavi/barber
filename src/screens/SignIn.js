@@ -1,15 +1,30 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity  } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 
 import Logo from '../assets/barber.svg'
 import EmailSvg from '../assets/email.svg'
 import LockSvg from '../assets/lock.svg'
 
+
+
+
 export default function Preload() {
+
+    const navigation = useNavigation();
 
     const [ emailField, setEmailField ] = useState('')
     const [ passwordField, setPasswordField ] = useState('')
+
+    const handleSignClick = () => {
+
+    }
+
+    const handleMessageButtonClick = () => {
+        navigation.navigate('SignUp')
+        
+    }
 
 
     return(
@@ -20,7 +35,7 @@ export default function Preload() {
                 <EmailSvg  width='25' height='25'  fill='#268597'/>
                 <TextInput  style={styles.txtimput} 
                 placeholderTextColor= '#268597'               
-                placeholder="Difite seu e-mail"   
+                placeholder="Digite seu e-mail"   
                 value={emailField}     
                 onChangeText={t=>setEmailField(t)}                       
                 />            
@@ -30,19 +45,21 @@ export default function Preload() {
                 <LockSvg width='25' height='25' fill='#268597' />
                 <TextInput  style={styles.txtimput} 
                 placeholderTextColor= '#268597'                  
-                placeholder="Difite sua senha"  
+                placeholder="Digite sua senha"  
                 value={passwordField} 
                 onChangeText={t=>setPasswordField(t)}
                 secureTextEntry={true}                        
                 />            
             </View>
 
-            <TouchableOpacity style={styles.Button} >
+            <TouchableOpacity 
+            onPress={handleSignClick}                 
+             style={styles.Button} >
                 <Text style={styles.txtbutton} > LOGIN </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-           
+            onPress={ handleMessageButtonClick  }            
              style={styles.buttoncadastro}>
                 <Text style={{fontSize: 18, color: '#268597' }} > Ainda não possui uma conta?</Text>
                 <Text style={{fontSize: 18, fontWeight:'bold', color: '#268597'}} > Cadastre-se</Text>
