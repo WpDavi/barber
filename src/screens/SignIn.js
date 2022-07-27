@@ -1,5 +1,6 @@
 import React from "react";
-import { View, StyleSheet, TextInput  } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity  } from "react-native";
+
 
 import Logo from '../assets/barber.svg'
 import EmailSvg from '../assets/email.svg'
@@ -8,21 +9,32 @@ import LockSvg from '../assets/lock.svg'
 export default function Preload() {
     return(
         <View style={styles.Container} >
-            <Logo width='100%' height='160' />
+            <Logo style={{marginBottom: 20}} width='100%' height='160' />
 
             <View style={styles.Viewinput}>
-                <EmailSvg width='25' height='25' />
-                <TextInput  style={styles.txtimput}                
+                <EmailSvg  width='25' height='25' />
+                <TextInput  style={styles.txtimput} 
+                placeholderTextColor= '#268597'               
                 placeholder="Difite seu e-mail"                               
                 />            
             </View>
 
             <View style={styles.Viewinput}>
-                <EmailSvg width='25' height='25' />
-                <TextInput  style={styles.txtimput}                
-                placeholder="Difite seu e-mail"                               
+                <LockSvg width='25' height='25' />
+                <TextInput  style={styles.txtimput} 
+                placeholderTextColor= '#268597'                  
+                placeholder="Difite sua senha"                               
                 />            
             </View>
+
+            <TouchableOpacity style={styles.Button} >
+                <Text style={styles.txtbutton} > LOGIN </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.buttoncadastro}>
+                <Text style={{fontSize: 18, color: '#268597' }} > Ainda não possui uma conta?</Text>
+                <Text style={{fontSize: 18, fontWeight:'bold', color: '#268597'}} > Cadastre-se</Text>
+            </TouchableOpacity>            
             
         </View>
 
@@ -43,15 +55,34 @@ const styles = StyleSheet.create ({
         borderRadius: 30,
         paddingLeft: 20,
         alignItems:'center',
-        marginTop:40,
-        width:'85%',
-        height:60        
+        marginTop:25,
+        width:'80%',
+        height:60,        
     },
 
     txtimput:{
         marginLeft:5,
-        fontSize:17,
+        fontSize:17,           
+    },
+    Button:{
+        backgroundColor:'#268597',
+        width: '80%',
+        height: 60,
+        borderRadius: 30,
+        marginTop: 25,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    txtbutton:{
+        fontSize: 20,
+        color: 'white'
+    },
+
+    buttoncadastro:{
+        flexDirection:'row',
+        marginTop: 80,
         
     }
+
 
 })
