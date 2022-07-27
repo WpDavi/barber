@@ -37,9 +37,9 @@ const styles = StyleSheet.create ({
         backgroundColor:'#83D6E5',
         flexDirection:'row',
         borderRadius: 30,
-        justifyContent:'center',
+        paddingLeft: 20,
         alignItems:'center',
-                
+                        
     },
 
 })
