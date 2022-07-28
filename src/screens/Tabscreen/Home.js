@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
+import { ActivityIndicator, Platform } from "react-native";
 import { Text, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { request, PERMISSIONS } from 'react-native-permissions';
+import Geolocation  from "@react-native-community/geolocation";
 
 import SearchIcon from '../../assets/search.svg'
 import MylocationIocn from '../../assets/my_location.svg'
@@ -8,8 +11,37 @@ import { TextInput } from "react-native-gesture-handler";
 
 
 export default function Home() {
-    
     const navigation = useNavigation();
+
+    const [ locationText, setLocationText ] = useState('');    
+    const [coords, setCoords] = useState(null);
+    const [ loading, setLoading] = useState(false);
+    const [list, setlist ] = useState([]);
+    
+
+    const handleLocationFinder = async () => {
+        setCoords(null);
+        let result = await request(
+            Platform.OS === 'ios' ?
+                PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
+                :
+                PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION
+        );
+        if (result == 'granted') {
+
+            setLoading(true);
+            setLocationText('');  
+            setlist([]);      
+
+            Geolocation.getCurrentPosition((info)=>{
+                setCoords(info.coords);
+                getBarbers();
+            } );
+        }
+    }
+    const getBarbers = () => {
+
+    }
 
     return(
         <SafeAreaView style={styles.container}>
@@ -26,14 +58,21 @@ export default function Home() {
                 <View style={styles.location} >
                     <TextInput style={styles.txtinput}
                     placeholder="Onde você está"
-                    placeholderTextColor={'white'}/>
-                    <TouchableOpacity>
+                    placeholderTextColor={'white'}
+                    value={locationText}
+                    onChangeText={t=> setLocationText (t) }
+                    />
+
+                    <TouchableOpacity onPress={handleLocationFinder}>
                         <MylocationIocn width='24' heigth='24' fill='white' />
                     </TouchableOpacity>
 
                     
                 </View>
                 
+                {loading &&
+                <ActivityIndicator style={{marginTop:50}} size='large' color={'white'}/>              
+            }   
 
 
             </ScrollView>            
