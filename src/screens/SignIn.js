@@ -121,7 +121,8 @@ const styles = StyleSheet.create ({
 
     txtimput:{
         marginLeft:5,
-        fontSize:17,           
+        fontSize:17,   
+        flex:1        
     },
     Button:{
         backgroundColor:'#268597',

@@ -17,7 +17,9 @@ export default function MainTab() {
         <Tab.Navigator
         tabBar={ props=><CustomTabBar {...props} /> }
         screenOptions={{
-            headerShown:false           
+            
+            headerShown:false    
+             
         }}
 
         >
