@@ -8,6 +8,6 @@ npm install @react-native-community/geolocation --save
 npm install --save react-native-gesture-handler
 npm install --save react-native-permissions  // tem que add permission
 npm install react-native-svg
-npm install react-native-svg-transformer
+npm install react-native-svg-transformer // fazer alteração
 yarn add styled-components  
 */
