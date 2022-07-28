@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { ActivityIndicator, Platform } from "react-native";
 import { Text, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -44,15 +44,22 @@ export default function Home() {
     const getBarbers = async () => {
         setLoading(true);
         setlist([]);
-        if(res.error == '') {
 
+        let res = await Api.getBarbers();
+        console.log(res)
+        if(res.error == '') {
+            
             setlist(res.data);
         } else {
-            alert('error:' +res.error ); 
+            alert("error: "+res.error ); 
         }
         setLoading(false)
 
     }
+
+    useEffect(()=>{
+        getBarbers();
+    }, []);
 
     return(
         <SafeAreaView style={styles.container}>
