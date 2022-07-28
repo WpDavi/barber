@@ -5,6 +5,8 @@ import { useNavigation } from "@react-navigation/native";
 import { request, PERMISSIONS } from 'react-native-permissions';
 import Geolocation  from "@react-native-community/geolocation";
 
+import Api from '../../Api'
+
 import SearchIcon from '../../assets/search.svg'
 import MylocationIocn from '../../assets/my_location.svg'
 import { TextInput } from "react-native-gesture-handler";
@@ -39,7 +41,16 @@ export default function Home() {
             } );
         }
     }
-    const getBarbers = () => {
+    const getBarbers = async () => {
+        setLoading(true);
+        setlist([]);
+        if(res.error == '') {
+
+            setlist(res.data);
+        } else {
+            alert('error:' +res.error ); 
+        }
+        setLoading(false)
 
     }
 
