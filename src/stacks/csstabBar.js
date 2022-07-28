@@ -12,31 +12,34 @@ import AccountIcon from '../assets/account.svg'
 export default function tabBar({ state, navigation }) {
     
     const goTo = (screenName) => {
-        navigation.navigation(screenName);
+        navigation.navigate(screenName);
     }
 
     return (
         <View style={styles.containertab}>
 
             <TouchableOpacity style={styles.button}
-            onPress={()=>goTo(Home) } >                
+            onPress={()=>goTo('Home') } >                
                 <HomeIcon widht='24' height='24' fill='white' />
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.button}
-            onPress={()=>goTo(Search) } >
+            onPress={()=>goTo('Search')} >
                 <SearchIcon widht='24' height='24' fill='white' />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button}
+            onPress={()=>goTo('Appointments') }>
                 <TodayIcon widht='24' height='24' fill='white' />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button}
+            onPress={()=>goTo('Favorites') }>
                 <FavoriteIcon widht='24' height='24' fill='white' />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button}
+            onPress={()=>goTo('Profile') }>
                 <AccountIcon widht='24' height='24' fill='white' />
             </TouchableOpacity>
             
