@@ -20,7 +20,7 @@ export default function tabBar({ state, navigation }) {
 
             <TouchableOpacity style={styles.button}
             onPress={()=>goTo('Home') } >                
-                <HomeIcon widht='24' height='24' fill='white' />
+                <HomeIcon style={{opacity: 0.7}} widht='24' height='24' fill='white' />
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.button}
