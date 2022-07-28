@@ -48,7 +48,9 @@ export default function Home() {
         let res = await Api.getBarbers();
         console.log(res)
         if(res.error == '') {
-            
+            if(res.loc) {
+                setLocationText(res.loc);
+            }            
             setlist(res.data);
         } else {
             alert("error: "+res.error ); 
