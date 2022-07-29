@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
-import { ActivityIndicator, Platform } from "react-native";
+import { ActivityIndicator, Image, Platform } from "react-native";
 import { Text, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { request, PERMISSIONS } from 'react-native-permissions';
 import Geolocation  from "@react-native-community/geolocation";
 
 import Api from '../../Api'
+import Infos from "../../components/Infos";
 
 import SearchIcon from '../../assets/search.svg'
 import MylocationIocn from '../../assets/my_location.svg'
@@ -46,7 +47,7 @@ export default function Home() {
         setlist([]);
 
         let res = await Api.getBarbers();
-        console.log(res)
+        
         if(res.error == '') {
             if(res.loc) {
                 setLocationText(res.loc);
@@ -92,9 +93,17 @@ export default function Home() {
                 
                 {loading &&
                 <ActivityIndicator style={{marginTop:50}} size='large' color={'white'}/>              
-            }   
+            } 
 
+            <View >
+                {list.map((item, k)=>(
+                    <Infos key={k} data={item} />                                                                  
+                ))}
+                
 
+            </View> 
+
+                             
             </ScrollView>            
         </SafeAreaView>
     )
