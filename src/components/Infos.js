@@ -1,12 +1,26 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native'
+import { useNavigation } from "@react-navigation/native";
 
 import Star from '../assets/star_empty.svg'
 
 
+
 export default function Infos({data}) {
+    const navigation = useNavigation()
+
+    const handleClick = () => {
+        navigation.navigate('Barber',{
+            id: data.id,
+            avatar: data.avatar,
+            name: data.name,
+            stars: data.stars,
+        });      
+    }
+
     return(
-        <TouchableOpacity style={styles.Container} >
+        <TouchableOpacity style={styles.Container}
+        onPress={handleClick} >
             <Image style={styles.perfilemg} source={{uri: data.avatar}}/>
 
                <View style={styles.containerinfo}>                        

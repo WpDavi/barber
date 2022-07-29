@@ -10,4 +10,5 @@ npm install --save react-native-permissions  // tem que add permission
 npm install react-native-svg
 npm install react-native-svg-transformer // fazer alteração
 yarn add styled-components  
+yarn add react-native-swiper
 */
