@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { ActivityIndicator, Image, Platform } from "react-native";
-import { Text, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity, RefreshControl } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { request, PERMISSIONS } from 'react-native-permissions';
 import Geolocation  from "@react-native-community/geolocation";
@@ -20,6 +20,7 @@ export default function Home() {
     const [coords, setCoords] = useState(null);
     const [ loading, setLoading] = useState(false);
     const [list, setlist ] = useState([]);
+    const [ refreshing, setRefreshing] = useState(false)
     
 
     const handleLocationFinder = async () => {
@@ -64,9 +65,18 @@ export default function Home() {
         getBarbers();
     }, []);
 
+    const onRefresh = () =>{
+        getBarbers();
+        
+    }
+
     return(
         <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollV}>
+            <ScrollView style={styles.scrollV}
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+            >
 
                 <View style={styles.header}>
                     <Text style={styles.txtheader}> Encontre o seu Barbeiro favorito </Text>
