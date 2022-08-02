@@ -1,10 +1,14 @@
 import React, { useState, useEffect} from "react";
-import { View, ScrollView, Image, SafeAreaView, StyleSheet } from "react-native";
+import { View, ScrollView, Text, Image, SafeAreaView, StyleSheet, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Swiper from "react-native-swiper";
 
 
 import Api from "../Api";
+import Star from '../assets/star_empty.svg'
+import FavorityIcon from '../assets/favorite.svg'
+import BackButoon from '../assets/back.svg'
+
 
 
 
@@ -22,6 +26,7 @@ export default function Barber(){
     });
 
     const [loading, setLoading ] = useState(false);
+    
 
     useEffect(() =>{
         const getBarberInfo = async () => {
@@ -35,6 +40,7 @@ export default function Barber(){
                 alert("Erro:"+json.error );
             }
             setLoading(false);
+            
         }
         getBarberInfo();
     },[]);
@@ -51,25 +57,63 @@ export default function Barber(){
                 autoplay={true}
                 >
                     {userInfo.photos.map((item, key)=>(
-                        <View style={{flex:1, backgroundColor:'#63c2d1'}} kay={key}>
+                        <View style={{flex:1, backgroundColor:'#63c2d1'}} key={key}>
                             <Image style={{width:'100%', height:240}}
                             source={{uri:item.url}} resizeMode='cover' />
                         </View>
                     ))}
                 </Swiper>
                 :
-                <View></View>
+                <View style={{ height: 140, backgroundColor:'#63c2d1' }}>
+
+                </View>
                 }    
 
-                <View>
+                <View style={styles.containerinfo}>
 
-                    <View></View>
-                    <View></View>
+                    <View style={styles.headerInfo}>
+                         <Image style={styles.perfilemg} source={{uri: userInfo.avatar}} />
+
+                         <View>
+                            <Text style={styles.txtname} > {userInfo.name} </Text>
+
+                             <View style={{flexDirection:'row', marginTop:10,alignItems:'center' }}>
+                    
+                                <Star width={12} height={12} fill={'#ff9200'} />
+                                <Star width={12} height={12} fill={'#ff9200'} />
+                                <Star width={12} height={12} fill={'#ff9200'} />
+                                <Star width={12} height={12} fill={'#ff9200'} />
+                                <Star width={12} height={12} fill={'#ff9200'} />
+                                <Star width={12} height={12} fill={'#ff9200'} />
+                    
+                                <Text style={{ marginLeft:10, color:'black', fontSize:12, fontWeight:'bold' }} > {userInfo.stars} </Text>
+                             </View>
+                         </View>
+
+                         <TouchableOpacity style={styles.containerFavorit}>
+                            <FavorityIcon width='24' height='24' fill='black' />
+                         </TouchableOpacity>                       
+                    </View>
+
+                    {loading &&
+                   <ActivityIndicator style={{marginTop:50}} size='large' color={'black'}/>}
+
+                   <Text> {userInfo.name} </Text>
+
+                   
+
                     <View></View>                 
 
                 </View>
 
-            </ScrollView>            
+            </ScrollView>   
+
+            <TouchableOpacity style={{position:'absolute'}}
+             onPress={() => navigation.navigate('Home')}>
+                <BackButoon width='44' height='44' fill='white' />                 
+            </TouchableOpacity>
+            
+
         </SafeAreaView>
     )
 }
@@ -90,6 +134,45 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         margin:3
     },
+    containerinfo:{
+        backgroundColor:'#fff',
+        borderTopLeftRadius: 50,
+        marginTop: -50,
+        minHeight: 790,
+    },
+    perfilemg:{
+        width:110,
+        height:110,
+        borderRadius:20,        
+        marginTop: -27,
+        borderWidth: 2,
+        borderColor: '#fff'
+    },
+
+    headerInfo:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginLeft: 25,
+        marginRight: 25,
+    },
+    txtname:{
+        fontWeight:'bold',
+        fontSize:18,
+        marginTop:15,
+        color:'#000000'
+    },
+    containerFavorit:{
+        backgroundColor:'white', 
+        borderRadius:50, 
+        width:40,
+        height: 40,
+        alignItems:'center',
+        justifyContent:'center' ,
+        marginTop: -20,
+        borderWidth: 2,
+        borderColor: '#999999',
+              
+    }
 
 
 })

@@ -72,7 +72,7 @@ export default function Preload() {
             </View>
 
             <View style={styles.Viewinput}>
-                <LockSvg width='25' height='25' fill='#268597' />
+                <LockSvg width='40' height='20' fill='#268597' />
                 <TextInput  style={styles.txtimput} 
                 placeholderTextColor= '#268597'                  
                 placeholder="Digite sua senha"  
